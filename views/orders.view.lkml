@@ -60,6 +60,25 @@ view: orders {
     }
   }
 
+  dimension: dynamic_date {
+    type: string
+    label_from_parameter: date_granularity
+    sql:
+    {% if date_granularity._parameter_value == 'day' %}
+    ${created_date}
+    {% elsif date_granularity._parameter_value == 'week' %}
+    ${created_week}
+    {% elsif date_granularity._parameter_value == 'month' %}
+    ${created_month}
+    {% elsif date_granularity._parameter_value == 'quarter' %}
+    ${created_quarter}
+    {% elsif date_granularity._parameter_value == 'year' %}
+    ${created_year}
+    {% else %}
+    ${created_date}
+    {% endif %};;
+  }
+
   measure: count {
     type: count
     drill_fields: [detail*]
