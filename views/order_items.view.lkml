@@ -71,6 +71,11 @@ view: order_items {
     type: average
     sql: ${sale_price} ;;  }
 
+  measure: test_sale_price {
+    type: sum
+    sql: ${sale_price}*1 ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
